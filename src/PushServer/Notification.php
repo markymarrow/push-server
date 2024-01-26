@@ -46,8 +46,18 @@ class Notification {
         );
     }
 
+    /**
+     * Create Push Notification payload
+     */
     protected function getPayload(): String
     {
-        return json_encode(['title' => $this->title, 'body' => $this->body]);
+        return json_encode([
+            "aps" => [
+                "alert" => [
+                    "title" => $this->title,
+                    "body" => $this->body
+                ]
+            ]
+        ]);
     }
 }
