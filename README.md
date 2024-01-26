@@ -1,3 +1,5 @@
+This is a partial iOS Push Notification Service, currently far from complete
+
 ### Setup ###
 - run `docker network create push_service`
 - run `docker compose up -d --build`
