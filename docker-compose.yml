@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  #PHP Service
+  php_server:
+    container_name: php_server
+    env_file:
+      - ./.env
+    build:
+      context: ./context
+      dockerfile: ../Dockerfile
+      args:
+        user: push
+        uid: 1000
+        env: local
+    volumes:
+      - ./src:/app
+    restart: unless-stopped
+    tty: true
+    working_dir: /app
+
+  push_database:
+    container_name: push_database
+    image: mysql:8.0
+    restart: unless-stopped
+    tty: true
+    env_file:
+      - ./.env
+
+networks:
+  default:
+    name: push_service
+    external: true
